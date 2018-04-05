@@ -1,0 +1,53 @@
+<script type="text/x-red" data-help-name="nodefactory">
+  <p>Ajoute une instance de node dans votre workspace.</p>
+  <p>Vous devez passer à <code>msg.<b>payload</b></code> un objet ou un
+  tableau comme dans la description plus bas.</p>
+  <p>Le 'factory' crée un identifiant du node si besoin. Cela ajoute les
+  positions ou le workspace aussi par besoin. Vous pouvez ajouter des files.</p>
+  <p>Le 'factory' ne crée pas de nodes si l'identifiant existe déjà dans
+  <code>flows.json</code>.</p>
+  <p>Le node apparaît dans tous les clients d'ouverts. Mais il n'est pas
+  déployé. L'utilisateur doit le déployer s'il veut l'utiliser.</p>
+
+  <p>Par exemple :</p>
+  <pre>
+// juste un node !
+// crée un mqtt dans le node
+msg.payload = {
+  "type": "mqtt in",
+  "name": "My generated node",
+  "topic": "wonderful/topic",
+  "broker": "my mqtt broker id"
+}
+// 2 nodes liés l'un à l'autre : un 'mqtt in' à un 'mqtt out'
+// vous pouvez créer vos propre IDs de node
+// et choisir les positions dans le workspace
+//
+msg.payload = [
+  {
+    "id": "cool",
+    "type": "mqtt in",
+    "name": "Cool",
+    "topic": "cool",
+    "broker": "my mqtt broker id",
+    "wires": [["fun"]]
+  },
+  {
+    "id": "fun",
+    "type": "mqtt out",
+    "name": "Fun",
+    "topic": "fun",
+    "broker": "my mqtt broker id",
+    "x": 300,
+    "y": 40
+  }
+]
+// vous pouvez choisir le workspace aussi
+msg.payload = {
+  "type": "mqtt in",
+  "name": "My generated node",
+  "topic": "wonderful/topic",
+  "broker": "my mqtt broker id",
+  "z": "my workspace id"
+}</pre>
+</script>

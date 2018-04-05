@@ -1,0 +1,17 @@
+{
+  "name": "ttb-node-factorynode",
+  "version": "0.0.2",
+  "description": "This node allow the user to add instance node into your workspace.",
+  "node-red": {
+    "nodes": {
+      "nodefactory": "01-nodefactory.js"
+    }
+  },
+  "keywords": [
+    "TheThingBox",
+    "node-red",
+    "nodefactory"
+  ],
+  "author": "http://www.digitalairways.com/",
+  "license": "http://www.wtfpl.net"
+}

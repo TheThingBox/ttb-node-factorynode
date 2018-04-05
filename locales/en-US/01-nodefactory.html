@@ -1,0 +1,52 @@
+<script type="text/x-red" data-help-name="nodefactory">
+  <p>Add instance node into your workspace.</p>
+  <p>You need to pass to <b>msg.payload</b> an object or an array of node
+  descriptions.</p>
+  <p>The factory create node id if needed. It adds to node position or workspace
+  if needed too. You can add wires.</p>
+  <p>The factory not create nodes if the id already exists in the
+  <b>flows.json</b>.</p>
+  <p>The node appears into all clients open. But it is not deployed. The user
+  has to deploy it if he wants to used it.</p>
+
+  <p>For example:</p>
+  <pre>
+// just one node !
+// create a mqtt in node
+msg.payload = {
+  "type": "mqtt in",
+  "name": "My generated node",
+  "topic": "wonderful/topic",
+  "broker": "my mqtt broker id"
+}
+// two nodes linked each other: a mqtt in to a mqtt out
+// you can create your own ids
+// and choose the position in the workspace
+msg.payload = [
+  {
+    "id": "cool",
+    "type": "mqtt in",
+    "name": "Cool",
+    "topic": "cool",
+    "broker": "my mqtt broker id",
+    "wires": [["fun"]]
+  },
+  {
+    "id": "fun",
+    "type": "mqtt out",
+    "name": "Fun",
+    "topic": "fun",
+    "broker": "my mqtt broker id",
+    "x": 300,
+    "y": 40
+  }
+]
+// you can choose your workspace too
+msg.payload = {
+  "type": "mqtt in",
+  "name": "My generated node",
+  "topic": "wonderful/topic",
+  "broker": "my mqtt broker id",
+  "z": "my workspace id"
+}</pre>
+</script>
